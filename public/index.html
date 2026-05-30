@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Барельеф - Садовые игрушки оптом от производителя</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<!-- ШАПКА САЙТА -->
+<header class="header">
+    <div class="container">
+        <a href="#" class="logo" onclick="showPage('home'); return false;">
+            <i class="fas fa-tree"></i> Барельеф
+        </a>
+        
+        <nav class="nav">
+            <a href="#" class="nav-link" data-page="home" onclick="showPage('home'); return false;">Каталог</a>
+            <a href="#" class="nav-link" data-page="about" onclick="showPage('about'); return false;">О нас</a>
+            <a href="#" class="nav-link" data-page="production" onclick="showPage('production'); return false;">Производство</a>
+            <a href="#" class="nav-link" data-page="contact" onclick="showPage('contact'); return false;">Контакты</a>
+            <a href="#" class="nav-link" data-page="account" onclick="showPage('account'); return false;">Личный кабинет</a>
+            
+            <button class="cart-btn" onclick="showPage('cart'); return false;">
+                <i class="fas fa-shopping-cart"></i> Корзина 
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+            
+            <div id="authButtons">
+                <button class="btn btn-secondary" onclick="showLoginModal()">Войти</button>
+                <button class="btn btn-primary" onclick="showRegisterModal()">Регистрация</button>
+            </div>
+            
+            <div id="userMenu" style="display: none;">
+                <span class="user-name" id="userName"></span>
+                <button class="btn btn-danger" onclick="handleLogout()">Выйти</button>
+            </div>
+        </nav>
+        
+        <button class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</header>
+
+<main>
+    <!-- ГЛАВНАЯ СТРАНИЦА (КАТАЛОГ) -->
+    <div id="home" class="page active">
+        <div class="hero">
+            <div class="container">
+                <h1>Садовые игрушки оптом <span>от производителя "Барельеф"</span></h1>
+                <p>Собственное производство с 2015 года. Гипс, бетон, полимеры. Работаем по всей России.</p>
+                <div class="hero-stats">
+                    <div class="stat"><span class="number">10+</span> лет на рынке</div>
+                    <div class="stat"><span class="number">70+</span> сотрудников</div>
+                    <div class="stat"><span class="number">127</span> млн ₽ выручка 2025</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2 class="section-title">Каталог товаров</h2>
+            
+            <div class="filters">
+                <button class="filter-btn active" data-category="all" onclick="filterProducts('all')">Все</button>
+                <button class="filter-btn" data-category="gnome" onclick="filterProducts('gnome')">Гномы</button>
+                <button class="filter-btn" data-category="animals" onclick="filterProducts('animals')">Животные</button>
+                <button class="filter-btn" data-category="birds" onclick="filterProducts('birds')">Птицы</button>
+                <button class="filter-btn" data-category="newyear" onclick="filterProducts('newyear')">Новогодние</button>
+                <button class="filter-btn" data-category="decor" onclick="filterProducts('decor')">Декор</button>
+            </div>
+
+            <div class="products-grid" id="productsGrid">
+                <div class="loader">Загрузка товаров...</div>
+            </div>
+        </div>
+
+        <!-- БЛОК ПРОИЗВОДСТВА -->
+        <div class="container" style="margin: 60px auto;">
+            <h2 class="section-title">Как создаются наши игрушки</h2>
+            <div class="steps">
+                <div class="step">
+                    <h3>Этап 1: Подготовка раствора</h3>
+                    <p>Специальные сухие смеси и жидкость, из которых изготавливается раствор для заливки форм.</p>
+                    <div class="step-photos">
+                        <img src="/images/step1-1.jpg" alt="Сухие смеси" onerror="this.src='https://placehold.co/200x150?text=Фото+1'">
+                        <img src="/images/step1-2.jpg" alt="Пластификатор" onerror="this.src='https://placehold.co/200x150?text=Фото+2'">
+                        <img src="/images/step1-3.jpg" alt="Компоненты" onerror="this.src='https://placehold.co/200x150?text=Фото+3'">
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h3>Этап 2: Заливка и формовка</h3>
+                    <p>Жидкий раствор заливается в формы. После застывания форма раскрывается и из нее вынимают фигуру.</p>
+                    <div class="step-photos">
+                        <img src="/images/step2-1.jpg" alt="Заливка формы" onerror="this.src='https://placehold.co/200x150?text=Фото+1'">
+                        <img src="/images/step2-2.jpg" alt="Процесс заливки" onerror="this.src='https://placehold.co/200x150?text=Фото+2'">
+                        <img src="/images/step2-3.jpg" alt="Формы" onerror="this.src='https://placehold.co/200x150?text=Фото+3'">
+                        <img src="/images/step2-4.jpg" alt="Распалубка" onerror="this.src='https://placehold.co/200x150?text=Фото+4'">
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h3>Этап 3: Шлифовка изделий</h3>
+                    <p>Каждая фигура проходит этап шлифовки — как машинной, так и ручной.</p>
+                    <div class="step-photos">
+                        <img src="/images/step3-1.jpg" alt="Машинная шлифовка" onerror="this.src='https://placehold.co/200x150?text=Фото+1'">
+                        <img src="/images/step3-2.jpg" alt="Ручная шлифовка" onerror="this.src='https://placehold.co/200x150?text=Фото+2'">
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h3>Этап 4: Окрашивание</h3>
+                    <p>Ручная роспись каждого изделия качественными красками, устойчивыми к погодным условиям.</p>
+                    <div class="step-photos">
+                        <img src="/images/step4-1.jpg" alt="Роспись" onerror="this.src='https://placehold.co/200x150?text=Фото+1'">
+                        <img src="/images/step4-2.jpg" alt="Нанесение красок" onerror="this.src='https://placehold.co/200x150?text=Фото+2'">
+                        <img src="/images/step4-3.jpg" alt="Детализация" onerror="this.src='https://placehold.co/200x150?text=Фото+3'">
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h3>Этап 5: Готовые игрушки</h3>
+                    <p>Финальный результат после окрашивания — яркие красочные изделия.</p>
+                    <div class="step-photos">
+                        <img src="/images/step5-1.jpg" alt="Готовая фигура" onerror="this.src='https://placehold.co/200x150?text=Фото+1'">
+                        <img src="/images/step5-2.jpg" alt="Готовая фигура 2" onerror="this.src='https://placehold.co/200x150?text=Фото+2'">
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h3>Этап 6: Упаковка и отправка</h3>
+                    <p>Упаковка в воздушно-пузырчатую плёнку и коробку. Игрушка готова к отправке.</p>
+                    <div class="step-photos">
+                        <img src="/images/step6-1.jpg" alt="Упаковка" onerror="this.src='https://placehold.co/200x150?text=Фото+1'">
+                        <img src="/images/step6-2.jpg" alt="Коробка" onerror="this.src='https://placehold.co/200x150?text=Фото+2'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- СТРАНИЦА "О НАС" -->
+    <div id="about" class="page">
+        <div class="container" style="padding: 100px 0;">
+            <h2 class="section-title">О компании</h2>
+            <div class="about-content">
+                <p><strong>ООО «Барельеф»</strong> — производственная компания, основанная в 2015 году.</p>
+                <p>Мы специализируемся на изготовлении садовых фигур, гномов, фигурок животных и элементов ландшафтного декора из полимерных материалов, дерева и гипса.</p>
+                <p>Наша продукция представлена на рынках Москвы, Московской области и других регионов России.</p>
+                <p><strong>Юридический адрес:</strong> 111524, г. Москва, ул. Электродная, д. 8 стр. 3</p>
+                <p><strong>ИНН:</strong> 7720801102</p>
+                <p><strong>ОГРН:</strong> 1157746123456</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- СТРАНИЦА "ПРОИЗВОДСТВО" -->
+    <div id="production" class="page">
+        <div class="container" style="padding: 100px 0;">
+            <h2 class="section-title">Наше производство</h2>
+            <p>Полный цикл производства на собственном заводе в Москве.</p>
+            <p>Мы используем только качественные материалы и современное оборудование.</p>
+            <p>Каждое изделие проходит контроль качества перед отправкой клиенту.</p>
+        </div>
+    </div>
+
+    <!-- СТРАНИЦА "КОНТАКТЫ" -->
+    <div id="contact" class="page">
+        <div class="container" style="padding: 100px 0;">
+            <h2 class="section-title">Контакты</h2>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> <strong>Телефон:</strong> +7 (495) 123-45-67</p>
+                <p><i class="fas fa-envelope"></i> <strong>Email:</strong> opt@barelief.ru</p>
+                <p><i class="fas fa-map-marker-alt"></i> <strong>Адрес:</strong> г. Москва, ул. Электродная, д. 8 стр. 3</p>
+                <p><i class="fas fa-clock"></i> <strong>Режим работы:</strong> Пн-Пт: 09:00 - 18:00</p>
+            </div>
+            <div class="map-container" style="margin-top: 30px;">
+                <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A1&source=constructor" width="100%" height="400" frameborder="0" style="border-radius: 20px;"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- СТРАНИЦА "КОРЗИНА" -->
+    <div id="cart" class="page">
+        <div class="container" style="padding: 100px 0;">
+            <h2 class="section-title">Корзина</h2>
+            <div id="cartItems" class="cart-items"></div>
+            <div class="cart-total">
+                <h3>Итого: <span id="cartTotal">0</span> ₽</h3>
+                <button class="btn btn-primary" onclick="checkout()">Оформить заказ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- СТРАНИЦА "ЛИЧНЫЙ КАБИНЕТ" -->
+    <div id="account" class="page">
+        <div class="container" style="padding: 100px 0;">
+            <h2 class="section-title">Личный кабинет</h2>
+            <div class="account-info">
+                <p><strong>Имя:</strong> <span id="accountName"></span></p>
+                <p><strong>Email:</strong> <span id="accountEmail"></span></p>
+                <p><strong>Телефон:</strong> <span id="accountPhone"></span></p>
+            </div>
+            <h3>История заказов</h3>
+            <div id="ordersHistory" class="orders-history"></div>
+        </div>
+    </div>
+</main>
+
+<!-- ПОДВАЛ -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Барельеф</h3>
+                <p>Производство садовых фигур с 2015 года</p>
+                <p>Оптовые поставки по всей России</p>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p><i class="fas fa-phone"></i> +7 (495) 123-45-67</p>
+                <p><i class="fas fa-envelope"></i> opt@barelief.ru</p>
+                <p><i class="fas fa-map-marker-alt"></i> Москва, Электродная ул., 8 стр. 3</p>
+            </div>
+            <div class="footer-section">
+                <h3>Режим работы</h3>
+                <p>Пн-Пт: 09:00 - 18:00</p>
+                <p>Сб-Вс: выходной</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024-2026 ООО "Барельеф". Все права защищены.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- МОДАЛЬНОЕ ОКНО ВХОДА -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal('loginModal')">&times;</span>
+        <h2>Вход в аккаунт</h2>
+        <input type="email" id="loginEmail" placeholder="Email" autocomplete="email">
+        <input type="password" id="loginPassword" placeholder="Пароль" autocomplete="current-password">
+        <button class="btn btn-primary" onclick="handleLogin()" style="width:100%;">Войти</button>
+        <p style="margin-top: 15px; text-align:center;">
+            Нет аккаунта? <a href="#" onclick="closeModal('loginModal'); showRegisterModal(); return false;">Зарегистрироваться</a>
+        </p>
+    </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО РЕГИСТРАЦИИ -->
+<div id="registerModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal('registerModal')">&times;</span>
+        <h2>Регистрация</h2>
+        <input type="text" id="regFullName" placeholder="ФИО" autocomplete="name">
+        <input type="email" id="regEmail" placeholder="Email" autocomplete="email">
+        <input type="tel" id="regPhone" placeholder="Телефон" autocomplete="tel">
+        <input type="password" id="regPassword" placeholder="Пароль" autocomplete="new-password">
+        <input type="password" id="regPasswordConfirm" placeholder="Подтверждение пароля" autocomplete="new-password">
+        <button class="btn btn-primary" onclick="handleRegister()" style="width:100%;">Зарегистрироваться</button>
+        <p style="margin-top: 15px; text-align:center;">
+            Уже есть аккаунт? <a href="#" onclick="closeModal('registerModal'); showLoginModal(); return false;">Войти</a>
+        </p>
+    </div>
+</div>
+
+<!-- ПОДКЛЮЧЕНИЕ СКРИПТОВ -->
+<script src="/js/api.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/cart.js"></script>
+<script src="/js/catalog.js"></script>
+<script src="/js/main.js"></script>
+
+<script>
+    // Дополнительная инициализация после загрузки DOM
+    document.addEventListener('DOMContentLoaded', () => {
+        // Проверяем авторизацию при загрузке
+        updateAuthUI();
+        
+        // Если пользователь авторизован и это админ — показываем ссылку на админку
+        const user = getUser();
+        if (user && user.role === 'admin') {
+            const nav = document.querySelector('.nav');
+            if (nav && !document.querySelector('.admin-link')) {
+                const adminLink = document.createElement('a');
+                adminLink.href = '#';
+                adminLink.className = 'nav-link admin-link';
+                adminLink.innerHTML = '<i class="fas fa-shield-alt"></i> Админ-панель';
+                adminLink.onclick = () => { window.location.href = '/admin.html'; return false; };
+                const cartBtn = document.querySelector('.cart-btn');
+                if (cartBtn) cartBtn.insertAdjacentElement('beforebegin', adminLink);
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
