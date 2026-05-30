@@ -2,11 +2,9 @@ const API_URL = (() => {
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
         return 'http://localhost:3000/api';
     }
-    // Для production на Render
-    return 'https://barelief-server.onrender.com/api';
+    return 'https://bare-lief.ru/api';
 })();
 
-// ===== ТОВАРЫ =====
 async function fetchProducts(filters = {}) {
     const params = new URLSearchParams(filters);
     const response = await fetch(`${API_URL}/products?${params}`);
@@ -20,7 +18,6 @@ async function fetchProductById(id) {
     return await response.json();
 }
 
-// ===== ЗАКАЗЫ =====
 async function createOrder(orderData) {
     const token = localStorage.getItem('token');
     const response = await fetch(`${API_URL}/orders`, {
@@ -47,7 +44,6 @@ async function fetchMyOrders() {
     return await response.json();
 }
 
-// ===== АУТЕНТИФИКАЦИЯ =====
 async function register(full_name, email, phone, password) {
     const response = await fetch(`${API_URL}/auth/register`, {
         method: 'POST',
@@ -91,7 +87,6 @@ function isAdmin() {
     return user && user.role === 'admin';
 }
 
-// ===== АДМИН-ПАНЕЛЬ =====
 async function fetchAllOrders() {
     const token = localStorage.getItem('token');
     const response = await fetch(`${API_URL}/admin/orders`, {
